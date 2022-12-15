@@ -1,16 +1,15 @@
 package com.devappsys.razorpaydemo.view
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.ContextWrapper
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Window
 import android.widget.*
 import androidx.lifecycle.*
-import com.devappsys.razorpaydemo.MainActivity
 import com.devappsys.razorpaydemo.R
 import com.devappsys.razorpaydemo.model.RazorPayCustomer
 import com.devappsys.razorpaydemo.model.RazorPayQRCode
@@ -56,8 +55,14 @@ class PaymentView(context: Context?) : LinearLayout(context) {
         val view = LayoutInflater.from(context).inflate(R.layout.payment_view, null)
 
          generateQR  = view.findViewById(R.id.generateQR)
+
          etEmail  = view.findViewById(R.id.et_email)
+        etEmail.background.clearColorFilter()
+        etEmail.background.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN)
+
          etPhone  = view.findViewById(R.id.et_phone)
+        etPhone.background.clearColorFilter()
+        etPhone.background.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN)
 
          layoutShowQr  = view.findViewById(R.id.layoutShowQR)
          layoutPaymentSuccess  = view.findViewById(R.id.paymentSuccessLayout)
@@ -118,7 +123,7 @@ class PaymentView(context: Context?) : LinearLayout(context) {
                     razorPayCustomer = it
                     viewModel.createQRCode(it.id)
                 }else{
-                    Toast.makeText(context,"Unable create customer",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"Unable create customer / Customer details might already exists",Toast.LENGTH_SHORT).show()
                     hideDialog()
                 }
             })
@@ -228,10 +233,12 @@ class PaymentView(context: Context?) : LinearLayout(context) {
         qrDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         qrDialog!!.setCancelable(true)
         qrDialog!!.setContentView(R.layout.qr_code_dialog)
+//        val window: Window? = qrDialog!!.window
+//        window?.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         val ivQrView = qrDialog!!.findViewById(R.id.iv_qr_code) as ImageView
         val btnclose = qrDialog!!.findViewById(R.id.btn_close_qr) as Button
 
-        Picasso.get().load(imgUrl).into(ivQrView)
+        Picasso.get().load(imgUrl).placeholder(R.drawable.progress_animation).into(ivQrView)
 
         btnclose.setOnClickListener {
             hideQrDialog()

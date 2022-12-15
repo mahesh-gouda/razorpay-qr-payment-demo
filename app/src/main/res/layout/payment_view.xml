@@ -45,6 +45,8 @@
             android:hint="Enter customer email"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
+            android:textColorHint="#637163"
+            android:textColor="@color/black"
             />
 
         <EditText
@@ -55,8 +57,11 @@
             android:maxLength="10"
             android:layout_below="@id/et_email"
             android:hint="Customer Phone number"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
+            android:textColorHint="#637163"
+            android:textColor="@color/black"
 
             />
 
@@ -68,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Generate QR"
+            android:layout_marginTop="20dp"
             android:textColor="#637163"
             app:icon="@drawable/ic_baseline_qr_code_scanner_24"
             app:iconTint="#637163"

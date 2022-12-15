@@ -3,16 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_bg"
+    android:backgroundTint="@color/white"
     >
 
     <ImageView
         android:id="@+id/iv_qr_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="500dp"
-        android:minHeight="500dp"
+        android:minHeight="400dp"
         android:minWidth="400dp"
-        android:maxWidth="400dp"
         />
 
     <Button
